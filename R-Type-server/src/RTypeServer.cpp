@@ -76,4 +76,7 @@ void RType::Server::RTypeServer::gameLoop()
         handlingEndGame();
     }
     _IOContext.stop();
+    std::ofstream save(".save");
+    save << std::to_string(_points);
+    save.close();
 }
