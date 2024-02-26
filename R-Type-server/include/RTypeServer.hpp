@@ -123,6 +123,7 @@ namespace RType::Server
             std::chrono::steady_clock::time_point &now);
 
         void sendDestroyInfo(struct RType::Protocol::EntityIdData entity);
+        void saveHighScore();
 
       protected:
       private:
