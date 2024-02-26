@@ -65,6 +65,22 @@ void RType::Server::RTypeServer::handlingEndGame()
     }
 }
 
+void RType::Server::RTypeServer::saveHighScore()
+{
+    std::string score;
+    std::size_t value = 0;
+    std::ifstream readHighScore(".highscore");
+    if (readHighScore.is_open()) {
+        readHighScore >> score;
+        if (!score.empty())
+            value = std::stoi(score);
+    }
+    std::ofstream writeHighScore(".highscore");
+    if (!writeHighScore.is_open())
+        return;
+    writeHighScore << std::to_string(_points > value ? _points : value);
+}
+
 void RType::Server::RTypeServer::gameLoop()
 {
     while (_isRunning) {
@@ -76,4 +92,5 @@ void RType::Server::RTypeServer::gameLoop()
         handlingEndGame();
     }
     _IOContext.stop();
+    saveHighScore();
 }

@@ -15,6 +15,7 @@
 #include "GameEngine.hpp"
 #include <asio.hpp>
 #include <map>
+#include <fstream>
 #include "Protocol.hpp"
 
 using componentList = std::map<std::size_t, std::map<RType::Protocol::ComponentType, std::vector<bool>>>;
@@ -122,6 +123,7 @@ namespace RType::Server
             std::chrono::steady_clock::time_point &now);
 
         void sendDestroyInfo(struct RType::Protocol::EntityIdData entity);
+        void saveHighScore();
 
       protected:
       private:
